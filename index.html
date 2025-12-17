@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planejador Financeiro Profissional</title>
+    
+    <link rel="stylesheet" href="style.css"> 
+    
+</head>
+<body>
+
+<div class="container">
+    <h1>💰 Simulador de Reserva & Investimentos</h1>
+    
+    <div class="grid">
+        <div class="input-group">
+            <label>Meta Financeira (R$)</label>
+            <input type="number" id="meta" value="20000" placeholder="Ex: 20000">
+        </div>
+        <div class="input-group">
+            <label>Prazo (Meses)</label>
+            <input type="number" id="prazo" value="24" placeholder="Ex: 24">
+        </div>
+        <div class="input-group">
+            <label>Já tenho investido (R$)</label>
+            <input type="number" id="inicial" value="0" placeholder="Ex: 0">
+        </div>
+        <div class="input-group">
+            <label>Taxa de Juros</label>
+            <select id="modoTaxa">
+                <option value="auto">Automática (Banco Central)</option>
+                <option value="manual">Manual (Definir abaixo)</option>
+            </select>
+        </div>
+    </div>
+
+    <button onclick="simular()">Gerar Planejamento</button>
+    
+    <p class="loading" id="loading">📡 Consultando Inteligência Artificial e BCB...</p>
+
+    <div id="resultado">
+        <h3>📊 Gráfico de Evolução Patrimonial</h3>
+        <img id="graficoImg" src="" alt="Gráfico de Investimento">
+        
+        <h3>📑 Relatório Executivo</h3>
+        <div class="relatorio-box" id="relatorioTexto"></div>
+    </div>
+</div>
+
+<script>
+    // O Script continua igual, pois é a lógica de conexão
+    async function simular() {
+        const meta = document.getElementById('meta').value;
+        const prazo = document.getElementById('prazo').value;
+        const inicial = document.getElementById('inicial').value;
+        const modoTaxa = document.getElementById('modoTaxa').value;
+
+        document.getElementById('loading').style.display = 'block';
+        document.getElementById('resultado').style.display = 'none';
+
+        try {
+            const response = await fetch('http://127.0.0.1:8000/simular', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    meta: parseFloat(meta),
+                    prazo_meses: parseInt(prazo),
+                    aporte_inicial: parseFloat(inicial),
+                    usar_selic_atual: modoTaxa === 'auto',
+                    taxa_manual: 0
+                })
+            });
+
+            const data = await response.json();
+
+            document.getElementById('graficoImg').src = "data:image/png;base64," + data.grafico_base64;
+            document.getElementById('relatorioTexto').innerText = data.relatorio;
+            document.getElementById('resultado').style.display = 'block';
+        } catch (error) {
+            alert("Erro de conexão. Verifique se o backend Python está rodando.");
+            console.error(error);
+        } finally {
+            document.getElementById('loading').style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+/* style.css - Design Profissional para Fintech */
+
+:root {
+    /* Paleta de Cores Profissional */
+    --primary-color: #2c3e50;    /* Azul Petróleo (Sóbrio) */
+    --accent-color: #27ae60;     /* Verde Sucesso (Ação) */
+    --accent-hover: #219150;     /* Verde mais escuro */
+    --bg-color: #f0f2f5;         /* Cinza muito claro (Moderno) */
+    --card-bg: #ffffff;          /* Branco puro */
+    --text-color: #34495e;       /* Cinza escuro para leitura */
+    --border-color: #dfe6e9;     /* Bordas sutis */
+    --shadow: 0 10px 25px rgba(0,0,0,0.1); /* Sombra suave (Elevação) */
+}
+
+* {
+    box-sizing: border-box; /* Garante que tamanhos respeitem as bordas */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: 16px; /* Bordas arredondadas modernas */
+    width: 100%;
+    max-width: 900px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+h1 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    border-bottom: 2px solid var(--bg-color);
+    padding-bottom: 15px;
+}
+
+/* Grid Responsivo: Adapta de 1 para 2 colunas automaticamente */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+}
+
+input, select {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #fafafa;
+    transition: all 0.3s;
+}
+
+/* Efeito de foco profissional (Borda verde ao clicar) */
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1);
+}
+
+button {
+    width: 100%;
+    padding: 16px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.1s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+button:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px); /* Leve subida ao passar o mouse */
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Área de Resultados */
+#resultado {
+    margin-top: 40px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 30px;
+    display: none; /* Escondido por padrão */
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.relatorio-box {
+    background: #f8f9fa;
+    padding: 25px;
+    border-left: 5px solid var(--primary-color);
+    border-radius: 8px;
+    white-space: pre-wrap; /* Mantém a formatação do texto */
+    font-family: 'Consolas', 'Courier New', monospace; /* Fonte monoespaçada para números */
+    color: #444;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.loading {
+    text-align: center;
+    display: none;
+    color: #7f8c8d;
+    font-style: italic;
+    margin-top: 20px;
+}
+
+/* Animação suave ao aparecer o resultado */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
