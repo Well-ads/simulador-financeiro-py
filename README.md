@@ -22,4 +22,14 @@ Aplicação Full-Stack para simulação financeira e projeção de Reserva de Em
 1. Clone o repositório.
 2. Instale as dependências:
    ```bash
+
    pip install -r requirements.txt
+
+   ---
+## 📸 Screenshots
+
+### Gráfico de Evolução
+![Gráfico do Sistema](gráfico.png)
+
+### Relatório Gerado
+![Relatório Financeiro](relatorio.png)
