@@ -29,7 +29,8 @@ Aplicação Full-Stack para simulação financeira e projeção de Reserva de Em
 ## 📸 Screenshots
 
 ### Gráfico de Evolução
-![Gráfico do Sistema](gráfico.png)
+![Gráfico do Sistema](https://github.com/Well-ads/simulador-financeiro-py/blob/main/grafico.png?raw=true)
 
 ### Relatório Gerado
 ![Relatório Financeiro](relatorio.png)
+
